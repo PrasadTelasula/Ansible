@@ -89,6 +89,8 @@ nc -zv 192.168.1.1 22
 nc -zv 192.168.1.2 5985
 ````
 
+# Get the windows server password
+
 
 # Finally ping the servers using ansible
 > Linux example
