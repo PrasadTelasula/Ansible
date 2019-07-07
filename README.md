@@ -2,20 +2,21 @@
 
 ![Alt text](https://github.com/PrasadTelasula/Ansible/blob/master/arch_diag/arch_diag.png?raw=true "Architecture")
 
-Clone this repository
+# Clone this repository
 
 ````
 git clone https://github.com/PrasadTelasula/Ansible.git
 ````
 
-````
-mkdir keys
-````
-````
-cd keys
-````
 
 # Generate SSH Keys.
+
+````
+mkdir -p /home/centos/keys
+````
+````
+cd /home/centos/keys
+````
 
 | Node Name | Command                    |
 | ------------- | ------------------------------ |
@@ -31,6 +32,8 @@ ssh-keygen -p -m PEM -f windowsLaunchKey
 ````
 
 # Export AWS accesskey and secretkey
+
+> Create an **IAM** user with **Programtic Access** and attach **EC2FullAdmin** policy.
 
 ````
 export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX
@@ -57,4 +60,44 @@ terraform apply "tfplan"
 ````
 ````
 terraform destroy
+````
+
+# update the Private IP's in host_vars folder
+> Linux example 
+
+````
+---
+ansible_ssh_host: 192.168.1.1
+````
+
+> windows example
+
+````
+---
+ansible_host: 192.168.1.2
+````
+
+# Test the connectivity using nc 
+> Linux example
+
+````
+nc -zv 192.168.1.1 22
+````
+> windows example
+
+````
+nc -zv 192.168.1.2 5985
+````
+
+
+# Finally ping the servers using ansible
+> Linux example
+
+````
+ansible centos -m ping
+````
+> windows example
+
+````
+ansible windows -m win_ping
 ````
