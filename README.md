@@ -1,8 +1,8 @@
 # Ansible servers provisioning with Terraform
 
-![Alt text](https://github.com/PrasadTelasula/Ansible/blob/master/arch_diag/infra_arch.png?raw=true "Architecture")
+![Alt text](https://github.com/PrasadTelasula/Ansible/blob/master/arch_diag/arch_diag.png?raw=true "Architecture")
 
-Clone this repository
+|Clone this repository|
 
 git clone https://github.com/PrasadTelasula/Ansible.git
 
