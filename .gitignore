@@ -1,0 +1,6 @@
+.DS_Stor
+terraform_state*
+*LaunchKey*
+tfplan
+terraform-provider-aws_v2.18.0_x4*
+terraform-provider-template_v2.1.2_x4
