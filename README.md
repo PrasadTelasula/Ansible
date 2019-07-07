@@ -1,5 +1,4 @@
 # Ansible
-
 Clone this repository
 
 git clone https://github.com/PrasadTelasula/Ansible.git
@@ -16,14 +15,14 @@ ssh-keygen -t rsa -f ubuntuLaunchKey
 
 ssh-keygen -t rsa -f windowsLaunchKey
 
-#To Convert Openssh key to RSA Key
+# To Convert Openssh key to RSA Key
 ssh-keygen -p -m PEM -f windowsLaunchKey
 
-#Export AWS accesskey and secretkey
+# Export AWS accesskey and secretkey
 export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
 
-#Terraform
+# Terraform
 terraform init
 
 terraform validate
