@@ -9,6 +9,9 @@ resource "aws_instance" "ACS" {
         Name = "ACS"
     }
     
+    depends_on = [
+        "aws_instance.Windows-Node",
+    ]
  
     # Connection to execute the file & remote-exec provisioners.
     connection {
@@ -48,18 +51,21 @@ resource "aws_instance" "ACS" {
             "sudo yum install nc -y",
             "sudo easy_install pip",
             "pip install pywinrm --user",
-            "touch /home/centos/inventory",   
+            "touch /home/centos/inventory",
+            "mkdir -p /home/centos/host_vars"   
         ]
     }
 
-    provisioner "file" {
-        content      = "${data.template_file.inventory.rendered}"
-        destination = "/home/centos/inventory"
-    }
 
     provisioner "file" {
         source      = "acs_config/ansible.cfg"
         destination = "/home/centos/ansible.cfg"
+    }
+
+
+    provisioner "file" {
+        source      = "acs_config/inventory"
+        destination = "/home/centos/inventory"
     }
 
     provisioner "file" {
@@ -117,9 +123,14 @@ resource "aws_instance" "Windows-Node"{
     subnet_id = "${var.SUBNETID}"
     vpc_security_group_ids = ["${aws_security_group.windows-sg.id}"]
     key_name = "${aws_key_pair.windowsKeyPair.key_name}"
+    get_password_data = true
     tags = {
         Name = "WindowsNode",
         OS = "Windows"
     }
     user_data = "${file("win_config/windowsprep.ps1")}"
 }
+
+
+
+

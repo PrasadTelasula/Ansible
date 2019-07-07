@@ -30,3 +30,5 @@ output "UbuntuNode_priv_ip" {
 output "WindowsNode_priv_ip" {
   value = "${aws_instance.Windows-Node.*.private_ip}"
 }
+
+
