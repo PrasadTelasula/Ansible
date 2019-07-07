@@ -77,6 +77,12 @@ ansible_ssh_host: 192.168.1.1
 ansible_host: 192.168.1.2
 ````
 
+# Get the windows server password and update in below file.
+> host_vars/node3
+````
+ansible_password: XXXXXXXX
+````
+
 # Test the connectivity using nc 
 > Linux example
 
@@ -89,11 +95,7 @@ nc -zv 192.168.1.1 22
 nc -zv 192.168.1.2 5985
 ````
 
-# Get the windows server password and update in below file.
-> host_vars/node3
-````
-ansible_password: XXXXXXXX
-````
+
 
 # Finally ping the servers using ansible
 > Linux example
