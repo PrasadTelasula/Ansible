@@ -62,7 +62,7 @@ terraform apply "tfplan"
 terraform destroy
 ````
 
-# update the Private IP's in host_vars folder
+# Get the Private IP's of CentosNode, UbuntuNode & Winodws node and update in host_vars folder
 > Linux example 
 
 ````
