@@ -58,9 +58,7 @@ terraform plan -out tfplan
 ````
 terraform apply "tfplan"
 ````
-````
-terraform destroy
-````
+
 
 # Get the Private IP's of CentosNode, UbuntuNode & WinodwsNode and update in host_vars folder
 > Linux example 
@@ -107,4 +105,9 @@ ansible centos -m ping
 
 ````
 ansible windows -m win_ping
+````
+
+# To Destroy infra
+````
+terraform destroy
 ````
