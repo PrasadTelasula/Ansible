@@ -61,6 +61,26 @@ resource "aws_instance" "ACS" {
         source      = "acs_config/ansible.cfg"
         destination = "/home/centos/ansible.cfg"
     }
+
+    provisioner "file" {
+        content      = "${data.template_file.node1.rendered}"
+        destination = "/home/centos/host_vars/node1"
+    }
+
+    provisioner "file" {
+        content      = "${data.template_file.node2.rendered}"
+        destination = "/home/centos/host_vars/node2"
+    }
+
+    provisioner "file" {
+        content      = "${data.template_file.node3.rendered}"
+        destination = "/home/centos/host_vars/node3"
+    }
+
+    provisioner "file" {
+        source      = "acs_config/group_vars"
+        destination = "/home/centos"
+    }
 }
 
 # Provision Centos Node.
