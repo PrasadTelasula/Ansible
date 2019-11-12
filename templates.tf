@@ -18,7 +18,7 @@ data "template_file" "node3" {
         template = "${file("acs_config/host_vars/node3.tpl")}"
         vars = {
             windows_node_private_address = "${aws_instance.Windows-Node.private_ip}",
-            windows_password = "${rsadecrypt(aws_instance.Windows-Node.password_data, file(var.WINDOWS_PRIV_KEY))}"
+            windows_password = "'${rsadecrypt(aws_instance.Windows-Node.password_data, file(var.WINDOWS_PRIV_KEY))}'"
 
         }
 }
