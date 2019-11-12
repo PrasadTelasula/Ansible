@@ -20,10 +20,10 @@ cd /home/centos/keys
 
 | Node Name | Command                    |
 | ------------- | ------------------------------ |
-| `ACS`      | ssh-keygen -t rsa -f acsLaunchKey      |
-| `CentosNode`   | ssh-keygen -t rsa -f centosLaunchKey     |
-| `UbuntNode`   | ssh-keygen -t rsa -f ubuntuLaunchKey     |
-| `WindowsNode`   | ssh-keygen -t rsa -f windowsLaunchKey    |
+| `ACS`      | ssh-keygen -t rsa -m PEM -f acsLaunchKey      |
+| `CentosNode`   | ssh-keygen -t rsa -m PEM -f centosLaunchKey     |
+| `UbuntNode`   | ssh-keygen -t rsa -m PEM -f ubuntuLaunchKey     |
+| `WindowsNode`   | ssh-keygen -t rsa -m PEM -f windowsLaunchKey    |
 
 
 # To Convert Openssh key to RSA Key
