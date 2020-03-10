@@ -9,7 +9,18 @@ pipeline {
             }
             
         }
-
+        
+        stage('Generate-SSH-Keys') {
+            steps {
+                sh 'mkdir keys'
+                sh 'ssh-keygen -t rsa -m PEM -f acsLaunchKey'
+                sh 'ssh-keygen -t rsa -m PEM -f centosLaunchKey'
+                sh 'ssh-keygen -t rsa -m PEM -f ubuntuLaunchKey'
+                sh 'ssh-keygen -t rsa -m PEM -f windowsLaunchKey'
+                
+            }
+        }
+        
         stage('Terraform-Version-Check') {
             steps {
                 sh 'terraform --version'
