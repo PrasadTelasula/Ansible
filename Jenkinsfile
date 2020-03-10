@@ -50,5 +50,13 @@ pipeline {
                 sh 'terraform apply -auto-approve'
             }
         }
+        
+        stage('Deploy approval') {
+            steps {
+                input 'Destroy Inftrastructure ?'
+                sh 'rm -rf keys'
+                sh 'terraform destroy --auto-approve'
+                
+        }
     }
 }
