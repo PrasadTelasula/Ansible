@@ -54,8 +54,11 @@ pipeline {
         stage('Deploy approval') {
             steps {
                 input 'Destroy Inftrastructure ?'
-                sh 'rm -rf keys'
+                // Destroy resources 
                 sh 'terraform destroy --auto-approve'
+                // Remove Keys
+                sh 'rm -rf keys'
+                
                 
         }
     }
