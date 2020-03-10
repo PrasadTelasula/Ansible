@@ -14,7 +14,7 @@ variable "UBUNTU_AMI_ID" {
 }
 
 variable "WINDOWS_AMI_ID" {
-   default =   "ami-09a8de20f12de517c"
+   default =   "ami-06a021f17d57d5620"
 }
 
 variable "SUBNETID" {
