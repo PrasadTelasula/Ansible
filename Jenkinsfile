@@ -13,10 +13,10 @@ pipeline {
         stage('Generate-SSH-Keys') {
             steps {
                 sh 'mkdir keys'
-                sh 'ssh-keygen -t rsa -m PEM -f acsLaunchKey'
-                sh 'ssh-keygen -t rsa -m PEM -f centosLaunchKey'
-                sh 'ssh-keygen -t rsa -m PEM -f ubuntuLaunchKey'
-                sh 'ssh-keygen -t rsa -m PEM -f windowsLaunchKey'
+                sh 'ssh-keygen -t rsa -m PEM -f keys/acsLaunchKey -q -N ""'
+                sh 'ssh-keygen -t rsa -m PEM -f keys/centosLaunchKey -q -N ""'
+                sh 'ssh-keygen -t rsa -m PEM -f keys/ubuntuLaunchKey -q -N ""'
+                sh 'ssh-keygen -t rsa -m PEM -f keys/windowsLaunchKey -q -N ""'
                 
             }
         }
