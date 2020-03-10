@@ -10,7 +10,7 @@ resource "aws_instance" "ACS" {
     }
     
     depends_on = [
-        "aws_instance.Windows-Node",
+        aws_instance.Windows-Node,
     ]
  
     # Connection to execute the file & remote-exec provisioners.
