@@ -4,7 +4,7 @@ resource "aws_instance" "ACS" {
     instance_type = "t2.micro"
     subnet_id = var.SUBNETID
     vpc_security_group_ids = [aws_security_group.acs-sg.id]
-    key_name = "aws_key_pair.acsKeyPair.key_name"
+    key_name = aws_key_pair.acsKeyPair.key_name
     tags = {
         Name = "ACS"
     }
