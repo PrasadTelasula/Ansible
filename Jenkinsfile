@@ -58,6 +58,8 @@ pipeline {
                 sh 'terraform destroy --auto-approve'
                 // Remove Keys
                 sh 'rm -rf keys'
+                // Remove state Files
+                sh 'rm -rf terraform.tfstate*'
             }   
         }
     }
