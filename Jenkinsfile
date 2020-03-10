@@ -58,8 +58,7 @@ pipeline {
                 sh 'terraform destroy --auto-approve'
                 // Remove Keys
                 sh 'rm -rf keys'
-                
-                
+            }   
         }
     }
 }
