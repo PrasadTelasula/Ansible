@@ -1,10 +1,10 @@
 # Provision Ansible Controller Server with centos 7.
 resource "aws_instance" "ACS" {
-    ami = "${var.ACS_AMI_ID}"
+    ami = var.ACS_AMI_ID
     instance_type = "t2.micro"
-    subnet_id = "${var.SUBNETID}"
-    vpc_security_group_ids = ["${aws_security_group.acs-sg.id}"]
-    key_name = "${aws_key_pair.acsKeyPair.key_name}"
+    subnet_id = var.SUBNETID
+    vpc_security_group_ids = [aws_security_group.acs-sg.id]
+    key_name = "aws_key_pair.acsKeyPair.key_name"
     tags = {
         Name = "ACS"
     }
@@ -15,10 +15,10 @@ resource "aws_instance" "ACS" {
  
     # Connection to execute the file & remote-exec provisioners.
     connection {
-            host = "${self.public_ip}"
+            host = self.public_ip
             type     = "ssh"
             user     = "centos"
-            private_key = "${file("keys/acsLaunchKey")}"
+            private_key = file("keys/acsLaunchKey")
     }
 
     # Copy Centos Node SSH Private key file to ACS at home directory.
@@ -69,17 +69,17 @@ resource "aws_instance" "ACS" {
     }
 
     provisioner "file" {
-        content      = "${data.template_file.node1.rendered}"
+        content      = data.template_file.node1.rendered
         destination = "/home/centos/host_vars/node1"
     }
 
     provisioner "file" {
-        content      = "${data.template_file.node2.rendered}"
+        content      = data.template_file.node2.rendered
         destination = "/home/centos/host_vars/node2"
     }
 
     provisioner "file" {
-        content      = "${data.template_file.node3.rendered}"
+        content      = data.template_file.node3.rendered
         destination = "/home/centos/host_vars/node3"
     }
 
@@ -91,11 +91,11 @@ resource "aws_instance" "ACS" {
 
 # Provision Centos Node.
 resource "aws_instance" "Centos-Node" {
-    ami = "${var.CENTOS_AMI_ID}"
+    ami = var.CENTOS_AMI_ID
     instance_type = "t2.micro"
-    subnet_id = "${var.SUBNETID}"
-    vpc_security_group_ids = ["${aws_security_group.centos-sg.id}"]
-    key_name = "${aws_key_pair.centosKeyPair.key_name}"
+    subnet_id = var.SUBNETID
+    vpc_security_group_ids = [aws_security_group.centos-sg.id]
+    key_name = aws_key_pair.centosKeyPair.key_name
     tags = {
         Name = "CentosNode",
         OS = "Centos"
@@ -105,11 +105,11 @@ resource "aws_instance" "Centos-Node" {
 
 # Provision Ubuntu Node.
 resource "aws_instance" "Ubuntu-Node" {
-    ami = "${var.UBUNTU_AMI_ID}"
+    ami = var.UBUNTU_AMI_ID
     instance_type = "t2.micro"
-    subnet_id = "${var.SUBNETID}"
-    vpc_security_group_ids = ["${aws_security_group.ubuntu-sg.id}"]
-    key_name = "${aws_key_pair.ubuntuKeyPair.key_name}"
+    subnet_id = var.SUBNETID
+    vpc_security_group_ids = [aws_security_group.ubuntu-sg.id]
+    key_name = aws_key_pair.ubuntuKeyPair.key_name
     tags = {
         Name = "UbuntuNode",
         OS = "Ubuntu"
@@ -118,17 +118,17 @@ resource "aws_instance" "Ubuntu-Node" {
 
 # Provision Windows Node.
 resource "aws_instance" "Windows-Node"{
-    ami = "${var.WINDOWS_AMI_ID}"
+    ami = var.WINDOWS_AMI_ID
     instance_type = "t2.medium"
-    subnet_id = "${var.SUBNETID}"
-    vpc_security_group_ids = ["${aws_security_group.windows-sg.id}"]
-    key_name = "${aws_key_pair.windowsKeyPair.key_name}"
+    subnet_id = var.SUBNETID
+    vpc_security_group_ids = [aws_security_group.windows-sg.id]
+    key_name = aws_key_pair.windowsKeyPair.key_name
     get_password_data = true
     tags = {
         Name = "WindowsNode",
         OS = "Windows"
     }
-    user_data = "${file("win_config/windowsprep.ps1")}"
+    user_data = file("win_config/windowsprep.ps1")
 }
 
 
